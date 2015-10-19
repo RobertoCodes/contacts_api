@@ -23,10 +23,10 @@ def create_user
     scheme: 'http',
     host: 'localhost',
     port: 3000,
-    path: '/users.json'
+    path: '/users/2.json'
   ).to_s
 
-  puts RestClient.post(
+  puts RestClient.delete(
     url,
     { user: { name: "Gizmo" } }
   )

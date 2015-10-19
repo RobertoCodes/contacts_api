@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
 
   def index
-    render json: params
+    render json: User.all
   end
 
   def show
-    render json: params
+    user = User.find(params[:id])
+    render json: user
   end
 
   def create
@@ -18,6 +19,17 @@ class UsersController < ApplicationController
       )
     end
 
+  end
+
+  def update
+    user = User.find(params[:id])
+    user.update
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    render text: "Deleted"
   end
 
   private
