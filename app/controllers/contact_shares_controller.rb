@@ -44,6 +44,11 @@ class ContactShareSharesController < ApplicationController
         render json: contact_share.favorited
       end
 
+      def toggle_favorite
+        contact_share = ContactShare.find(params[:id])
+        contact_share.favorited = !contact_share.favorited
+        render json: contact_share
+      end
 
       private
         def contact_share_params

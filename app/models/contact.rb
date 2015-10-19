@@ -1,6 +1,7 @@
 class Contact < ActiveRecord::Base
   validates :name, :user_id, presence: true
   validates :email, presence: true, uniqueness: {:scope => :user_id}
+  validate :contact_group_exists
 
   belongs_to :owner,
     class_name: 'User',
@@ -24,4 +25,11 @@ class Contact < ActiveRecord::Base
     foreign_key: :contact_group_id,
     primary_key: :id
 
+
+  def contact_group_exists
+    group_id = self.contact_group_id
+    unless ContactGroup.find(group_id)
+      errors.add(:contact_group_exists, "contact group needs to exist.")
+    end
+  end
 end

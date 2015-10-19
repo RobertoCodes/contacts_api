@@ -40,6 +40,12 @@ class ContactsController < ApplicationController
       render json: contact.favorited
     end
 
+    def toggle_favorite
+      contact = Contact.find(params[:id])
+      contact.favorited = !contact.favorited
+      render json: contact
+    end
+
     private
       def contact_params
         params.require(:contact).permit(:name, :email, :user_id)

@@ -23,10 +23,10 @@ def create_user
     scheme: 'http',
     host: 'localhost',
     port: 3000,
-    path: '/contacts'
+    path: '/contacts/1/toggle_favorite'
   ).to_s
 
-  puts RestClient.post(
+  puts RestClient.patch(
     url,
     { contact: { name: "Gizmo", email: "gizmo@gizmo.com" } }
   )

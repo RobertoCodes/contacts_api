@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_many :postees, as: :postee
 
   has_many :contact_groups,
+    dependent: :destroy,
     class_name: 'ContactGroup',
     foreign_key: :user_id,
     primary_key: :id

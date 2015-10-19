@@ -9,4 +9,5 @@ class ContactGroupsController < ApplicationController
     contact_group = ContactGroup.find(params[:id])
     render json: contact_group.contacts
   end
+  
 end

@@ -5,7 +5,7 @@ class ContactGroup < ActiveRecord::Base
     foreign_key: :contact_group_id,
     primary_key: :id
 
-  belongs_to :user,
+  belongs_to :user, 
     class_name: 'User',
     foreign_key: :user_id,
     primary_key: :id
