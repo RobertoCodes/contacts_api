@@ -6,7 +6,7 @@ require 'rest-client'
 #   scheme: 'http',
 #   host: 'localhost',
 #   port: 3000,
-#   path: '/users/5.json',
+#   path: '/contacts/2',
 #   query_values: {
 #     'some_category[a_key]' => 'another value',
 #     'some_category[a_second_key]' => 'yet another value',
@@ -23,12 +23,12 @@ def create_user
     scheme: 'http',
     host: 'localhost',
     port: 3000,
-    path: '/users/2.json'
+    path: '/contacts'
   ).to_s
 
-  puts RestClient.delete(
+  puts RestClient.post(
     url,
-    { user: { name: "Gizmo" } }
+    { contact: { name: "Gizmo", user_id: 2, email: "gizmo@gizmo.com" } }
   )
 end
 
