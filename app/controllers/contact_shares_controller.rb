@@ -39,6 +39,12 @@ class ContactShareSharesController < ApplicationController
         render json: contact_share
       end
 
+      def favorited
+        contact_share = ContactShare.find(params[:id])
+        render json: contact_share.favorited
+      end
+
+
       private
         def contact_share_params
           params.require(:contact_share).permit(:user_id, :contact_id)

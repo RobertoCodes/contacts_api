@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019200136) do
+ActiveRecord::Schema.define(version: 20151019205257) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -22,11 +22,18 @@ ActiveRecord::Schema.define(version: 20151019200136) do
     t.string   "postee_type"
   end
 
+  create_table "contact_groups", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "contact_shares", force: :cascade do |t|
     t.integer  "contact_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "favorited"
   end
 
   add_index "contact_shares", ["contact_id"], name: "index_contact_shares_on_contact_id"
@@ -38,6 +45,8 @@ ActiveRecord::Schema.define(version: 20151019200136) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "favorited"
+    t.integer  "contact_group_id"
   end
 
   add_index "contacts", ["email", "user_id"], name: "index_contacts_on_email_and_user_id", unique: true

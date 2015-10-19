@@ -17,6 +17,11 @@ class Contact < ActiveRecord::Base
     through: :contact_shares,
     source: :user
 
-  has_many :postees, as: :postee 
+  has_many :postees, as: :postee
+
+  belongs_to :contact_group,
+    class_name: 'ContactGroup',
+    foreign_key: :contact_group_id,
+    primary_key: :id
 
 end

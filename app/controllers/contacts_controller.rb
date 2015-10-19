@@ -35,6 +35,11 @@ class ContactsController < ApplicationController
       render json: contact.destroy
     end
 
+    def favorited
+      contact = Contact.find(params[:id])
+      render json: contact.favorited
+    end
+
     private
       def contact_params
         params.require(:contact).permit(:name, :email, :user_id)

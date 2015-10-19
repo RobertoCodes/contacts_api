@@ -23,6 +23,11 @@ class User < ActiveRecord::Base
     foreign_key: :poster_id,
     primary_key: :id
 
-  has_many :postees, as: :postee 
+  has_many :postees, as: :postee
+
+  has_many :contact_groups,
+    class_name: 'ContactGroup',
+    foreign_key: :user_id,
+    primary_key: :id
 
 end

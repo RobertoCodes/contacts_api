@@ -38,6 +38,14 @@ class UsersController < ApplicationController
     render json: user
   end
 
+  def favorites
+    user = User.find(params[:id])
+    favorites = user.contacts.select { |contact| contact.favorited }
+    favorites += user.contact_shares.select { |contact_share| contact_share.favorited }
+    render json: favorites
+  end
+
+
   private
     def user_params
       params.require(:user).permit(:username)
