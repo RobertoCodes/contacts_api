@@ -1,7 +1,9 @@
 class ContactsController < ApplicationController
 
     def index
-      render json: Contact.all
+      user = User.find(params[:user_id])
+      user_contacts = user.contacts + user.shared_contacts
+      render json: user_contacts
     end
 
     def show
@@ -14,9 +16,7 @@ class ContactsController < ApplicationController
       if contact.save
         render json: contact
       else
-        render(
-          json: contact.errors.full_messages, status: :unprocessable_entity
-        )
+        render json: contact.errors.full_messages, status: :unprocessable_entity
       end
 
     end
@@ -26,21 +26,18 @@ class ContactsController < ApplicationController
       if contact.update(contact_params)
         render json: contact
       else
-        render(
-          json: contact.errors.full_messages, status: :unprocessable_entity
-        )
+        render json: contact.errors.full_messages, status: :unprocessable_entity
       end
     end
 
     def destroy
       contact = Contact.find(params[:id])
-      contact.destroy
-      render json: contact
+      render json: contact.destroy
     end
 
     private
       def contact_params
-        params[:contact].permit(:name, :email, :user_id)
+        params.require(:contact).permit(:name, :email, :user_id)
       end
 
 end

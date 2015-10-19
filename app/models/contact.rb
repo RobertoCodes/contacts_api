@@ -8,6 +8,7 @@ class Contact < ActiveRecord::Base
     primary_key: :id
 
   has_many :contact_shares,
+    dependent: :destroy,
     class_name: 'ContactShare',
     foreign_key: :contact_id,
     primary_key: :id
@@ -15,5 +16,7 @@ class Contact < ActiveRecord::Base
   has_many :shared_users,
     through: :contact_shares,
     source: :user
+
+  has_many :postees, as: :postee 
 
 end

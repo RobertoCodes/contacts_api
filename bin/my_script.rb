@@ -28,7 +28,7 @@ def create_user
 
   puts RestClient.post(
     url,
-    { contact: { name: "Gizmo", user_id: 2, email: "gizmo@gizmo.com" } }
+    { contact: { name: "Gizmo", email: "gizmo@gizmo.com" } }
   )
 end
 
